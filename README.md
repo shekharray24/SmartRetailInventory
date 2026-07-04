@@ -295,61 +295,36 @@ GET /api/sales/
 
 ## Login Page
 
-> Add screenshot here
-
-```
-screenshots/login.png
-```
+![Login Page](screenshots/login.png)
 
 ---
 
 ## Dashboard
 
-> Add screenshot here
-
-```
-screenshots/dashboard.png
-```
+![Dashboard](screenshots/dashboard.png)
 
 ---
 
 ## Products
 
-> Add screenshot here
-
-```
-screenshots/products.png
-```
+![Products](screenshots/products.png)
 
 ---
 
 ## Inventory
 
-> Add screenshot here
-
-```
-screenshots/inventory.png
-```
-
+![Inventory](screenshots/inventory.png)
 ---
 
 ## Sales
 
-> Add screenshot here
-
-```
-screenshots/sales.png
-```
+![Sales](screenshots/sales.png)
 
 ---
 
 ## Reports
 
-> Add screenshot here
-
-```
-screenshots/reports.png
-```
+![Reports](screenshots/reports.png)
 
 ---
 
@@ -357,9 +332,8 @@ screenshots/reports.png
 
 > Add screenshot here
 
-```
-screenshots/analytics.png
-```
+![Analytics](screenshots/analytics.png)
+
 
 ---
 
@@ -388,7 +362,9 @@ screenshots/analytics.png
 
 # 👨‍💻 Developer
 
-**________**
+**Anamika Kumari**
+**Shekhar Kumar Ray**
+**Ashwini Kumar Sinku**
 
 Computer Science Engineering Student
 
