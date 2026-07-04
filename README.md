@@ -330,8 +330,6 @@ GET /api/sales/
 
 ## AI Analytics
 
-> Add screenshot here
-
 ![Analytics](screenshots/analytics.png)
 
 
@@ -362,11 +360,11 @@ GET /api/sales/
 
 # 👨‍💻 Developer
 
-**Anamika Kumari**
-**Shekhar Kumar Ray**
-**Ashwini Kumar Sinku**
+- **Anamika Kumari**
+- **Shekhar Kumar Ray**
+- **Ashwini Kumar Sinku**
 
-Computer Science Engineering Student
+Computer Science and Engineering Student
 
 AI | Machine Learning | Full Stack Django Developer
 
