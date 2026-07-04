@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual Environment
+myenv/
+venv/
+env/
+
+# Django
+db.sqlite3
+*.log
+
+# VS Code
+.vscode/
+
+# PyCharm
+.idea/
+
+# Static collected files
+staticfiles/
+
+# Media
+media/
+
+# ML cache
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment variables
+.env
+
+# Python cache
+.pytest_cache/

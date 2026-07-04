@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Sales History</h2>
+
+<a href="{% url 'add_sale' %}"
+   class="btn btn-success mb-3">
+
+    Record Sale
+
+</a>
+
+<table class="table table-bordered">
+
+<tr>
+
+<th>Product</th>
+<th>Quantity</th>
+<th>Amount</th>
+<th>Date</th>
+
+</tr>
+
+{% for sale in sales %}
+
+<tr>
+
+<td>{{ sale.product.name }}</td>
+
+<td>{{ sale.quantity }}</td>
+
+<td>{{ sale.amount }}</td>
+
+<td>{{ sale.sale_date }}</td>
+
+</tr>
+
+{% endfor %}
+
+</table>
+
+{% endblock %}

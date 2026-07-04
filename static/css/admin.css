@@ -1,0 +1,283 @@
+body{
+    background:#f5f7fb;
+}
+
+.sidebar{
+    width:250px;
+    height:100vh;
+    position:fixed;
+    background:#212529;
+    color:white;
+    left:0;
+    top:0;
+    padding-top:20px;
+}
+
+.sidebar h3{
+    text-align:center;
+    margin-bottom:30px;
+    font-weight:bold;
+}
+
+.sidebar a{
+    color:white;
+    text-decoration:none;
+    display:block;
+    padding:15px 25px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#0d6efd;
+}
+
+.main-content{
+    margin-left:250px;
+    padding:25px;
+}
+
+.topbar{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:20px;
+    box-shadow:0 0 10px rgba(0,0,0,.1);
+}
+
+/* Dashboard Cards */
+
+.dashboard-card{
+
+    border:none;
+
+    border-radius:15px;
+
+    transition:0.3s;
+
+    box-shadow:0 5px 15px rgba(0,0,0,.08);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-6px);
+
+    box-shadow:0 10px 25px rgba(0,0,0,.2);
+
+}
+
+.card-icon{
+
+    font-size:40px;
+
+    opacity:.8;
+
+}
+
+.card-value{
+
+    font-size:32px;
+
+    font-weight:bold;
+
+}
+
+.card-title{
+
+    font-size:15px;
+
+    color:#ddd;
+
+}
+
+.dashboard-container{
+
+    padding:10px;
+
+}
+
+.dashboard-header{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:30px;
+
+}
+
+.dashboard-header h2{
+
+    font-weight:700;
+
+}
+
+.dashboard-header p{
+
+    margin-bottom:0;
+
+}
+
+/* KPI Cards */
+
+.dashboard-card{
+
+    display:flex;
+
+    justify-content:space-between;
+
+    align-items:center;
+
+    padding:25px;
+
+    border-radius:18px;
+
+    color:white;
+
+    transition:0.3s;
+
+    box-shadow:0 10px 25px rgba(0,0,0,.1);
+
+}
+
+.dashboard-card:hover{
+
+    transform:translateY(-8px);
+
+    box-shadow:0 18px 35px rgba(0,0,0,.2);
+
+}
+
+.dashboard-card h6{
+
+    opacity:.9;
+
+    margin-bottom:8px;
+
+}
+
+.dashboard-card h2{
+
+    font-weight:700;
+
+}
+
+.card-icon{
+
+    font-size:42px;
+
+}
+
+.products-card{
+
+    background:linear-gradient(135deg,#4e54c8,#8f94fb);
+
+}
+
+.sales-card{
+
+    background:linear-gradient(135deg,#11998e,#38ef7d);
+
+}
+
+.revenue-card{
+
+    background:linear-gradient(135deg,#ff9966,#ff5e62);
+
+}
+
+.inventory-card{
+
+    background:linear-gradient(135deg,#36d1dc,#5b86e5);
+
+}
+
+.warning-card{
+
+    background:linear-gradient(135deg,#f7971e,#ffd200);
+
+}
+
+.ai-card{
+
+    background:linear-gradient(135deg,#7f00ff,#e100ff);
+
+}
+
+.card{
+
+    border-radius:20px;
+
+}
+
+.card-body{
+
+    padding:25px;
+
+}
+
+.chart-container{
+
+    width:350px;
+
+    height:350px;
+
+    margin:auto;
+
+}
+
+/* Tables */
+
+.dashboard-table{
+
+    border: none;
+
+    border-radius: 18px;
+
+    overflow: hidden;
+
+    box-shadow: 0 8px 20px rgba(0,0,0,.08);
+
+}
+
+.dashboard-table table{
+
+    margin-bottom:0;
+
+}
+
+.dashboard-table tbody tr{
+
+    transition:0.2s;
+
+}
+
+.dashboard-table tbody tr:hover{
+
+    background:#f5f7fb;
+
+}
+
+.dashboard-table .card-header{
+
+    font-weight:600;
+
+}
+
+.badge{
+
+    font-size:.85rem;
+
+    padding:8px 12px;
+
+    border-radius:30px;
+
+}
+
+.table td{
+
+    vertical-align:middle;
+
+}

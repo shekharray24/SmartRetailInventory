@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Products</h2>
+
+<a href="{% url 'add_product' %}"
+   class="btn btn-primary mb-3">
+
+    Add Product
+
+</a>
+
+<form method="GET" class="row g-3 mb-4">
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="search"
+            class="form-control"
+            placeholder="🔍 Search Product..."
+            value="{{ search }}">
+
+    </div>
+
+    <div class="col-md-3">
+
+        <select
+            name="category"
+            class="form-select">
+
+            <option value="">
+
+                All Categories
+
+            </option>
+
+            {% for category in categories %}
+
+            <option
+                value="{{ category }}"
+                {% if category == selected_category %}selected{% endif %}>
+
+                {{ category }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-3">
+
+        <select
+            name="brand"
+            class="form-select">
+
+            <option value="">
+
+                All Brands
+
+            </option>
+
+            {% for brand in brands %}
+
+            <option
+                value="{{ brand }}"
+                {% if brand == selected_brand %}selected{% endif %}>
+
+                {{ brand }}
+
+            </option>
+
+            {% endfor %}
+
+        </select>
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button
+            class="btn btn-primary w-100">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered">
+
+    <tr>
+
+        <th>ID</th>
+        <th>Name</th>
+        <th>Category</th>
+        <th>Brand</th>
+        <th>Price</th>
+        <th>Stock</th>
+        <th>Actions</th>
+
+    </tr>
+
+    {% for product in products %}
+
+    <tr>
+
+        <td>{{ product.product_id }}</td>
+        <td>{{ product.name }}</td>
+        <td>{{ product.category }}</td>
+        <td>{{ product.brand }}</td>
+        <td>{{ product.price }}</td>
+        <td>{{ product.stock }}</td>
+
+        <td>
+
+            <a href="{% url 'edit_product' product.id %}"
+               class="btn btn-warning">
+
+                Edit
+
+            </a>
+
+            <a href="{% url 'delete_product' product.id %}"
+               class="btn btn-danger">
+
+                Delete
+
+            </a>
+
+        </td>
+
+    </tr>
+
+    {% endfor %}
+
+</table>
+
+{% endblock %}

@@ -1,0 +1,83 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        📄 Reports Center
+    </h2>
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <h4>📈 Sales Report</h4>
+
+                    <p>Download sales data as PDF.</p>
+
+                    <a href="{% url 'sales_pdf' %}" class="btn btn-primary">
+
+                        Export PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <h4>📦 Inventory Report</h4>
+
+                    <p>Download inventory as Excel.</p>
+
+                    <a href="{% url 'inventory_excel' %}" class="btn btn-success">
+
+                        Export Excel
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm">
+
+                <div class="card-body text-center">
+
+                    <h4>🤖 AI Report</h4>
+
+                    <p>AI anomaly report (Coming Soon).</p>
+
+                    <a href="{% url 'ai_report_pdf' %}" class="btn btn-dark">
+
+                        Export PDF
+
+                    </a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

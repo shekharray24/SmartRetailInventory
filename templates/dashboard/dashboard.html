@@ -1,0 +1,346 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="dashboard-container">
+    <div class="dashboard-header">
+        <div>
+            <h2 class="fw-bold">
+                📊 Dashboard
+            </h2>
+            <p class="text-muted">
+                Welcome to Smart Retail Inventory System
+            </p>
+        </div>
+        <div>
+            <span class="badge bg-primary">
+                {{ user.username }}
+            </span>
+        </div>
+    </div>
+
+    <!-- KPI Cards -->
+
+    <div class="row g-4">
+
+        <!-- Products -->
+
+        <div class="col-lg-4 col-md-6">
+
+            <div class="dashboard-card products-card">
+                <div class="card-icon">
+                    📦
+                </div>
+                <div>
+                    <h6>Total Products</h6>
+                    <h2>{{ total_products }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Sales -->
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-card sales-card">
+                <div class="card-icon">
+                    💰
+                </div>
+                <div>
+                    <h6>Total Sales</h6>
+                    <h2>{{ total_sales }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Revenue -->
+
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-card revenue-card">
+                <div class="card-icon">
+                    💵
+                </div>
+                <div>
+                    <h6>Total Revenue</h6>
+                    <h2>₹ {{ total_revenue }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Inventory -->
+
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-card inventory-card">
+                <div class="card-icon">
+                    🏬
+                </div>
+                <div>
+                    <h6>Inventory Value</h6>
+                    <h2>₹ {{ inventory_value }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- Low Stock -->
+
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-card warning-card">
+                <div class="card-icon">
+                    ⚠️
+                </div>
+                <div>
+                    <h6>Low Stock</h6>
+                    <h2>{{ low_stock }}</h2>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI -->
+        <div class="col-lg-4 col-md-6">
+            <div class="dashboard-card ai-card">
+                <div class="card-icon">
+                    🤖
+                </div>
+                <div>
+                    <h6>AI Alerts</h6>
+                    <h2>{{ anomalies }}</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Charts -->
+
+    <div class="row g-4 mt-2">
+
+        <!-- Daily Chart -->
+
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <h5 class="mb-3">
+                        📈 Daily Sales Trend
+                    </h5>
+                    <canvas id="salesChart" data-labels='{{ chart_labels|safe }}' data-values='{{ chart_data|safe }}'>
+                    </canvas>
+                </div>
+            </div>
+        </div>
+
+        <!-- Monthly Chart -->
+        <div class="col-lg-6">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <h5 class="mb-3">
+                        📊 Monthly Sales
+                    </h5>
+                    <canvas id="monthlySalesChart" data-labels='{{ monthly_labels|safe }}'
+                        data-values='{{ monthly_data|safe }}'>
+                    </canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-lg-12">
+            <div class="card shadow-sm border-0 rounded-4">
+                <div class="card-body">
+                    <h5 class="mb-3">
+                        🥧 Category Distribution
+                    </h5>
+                    <div class="chart-container">
+                        <canvas id="categoryChart" data-labels='{{ category_labels|safe }}'
+                            data-values='{{ category_values|safe }}'>
+                        </canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row g-4 mt-3">
+
+            <!-- Recent Sales -->
+            <div class="col-lg-6">
+                <div class="card dashboard-table">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0">
+                            📦 Recent Sales
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for sale in recent_sales %}
+                                <tr>
+                                    <td>{{ sale.product.name }}</td>
+                                    <td>
+                                        <span class="badge bg-primary">
+                                            {{ sale.quantity }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        ₹ {{ sale.amount }}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3">
+                                        No Sales Found
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+            <!-- Recent Inventory -->
+            <div class="col-lg-6">
+                <div class="card dashboard-table">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0">
+                            📋 Recent Inventory
+                        </h5>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-hover align-middle">
+                            <thead>
+                                <tr>
+                                    <th>Product</th>
+                                    <th>Qty</th>
+                                    <th>Type</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for item in recent_inventory %}
+                                <tr>
+                                    <td>{{ item.product.name }}</td>
+                                    <td>
+                                        <span class="badge bg-success">
+                                            {{ item.quantity }}
+                                        </span>
+                                    </td>
+                                    <td>
+                                        {% if item.transaction_type == "IN" %}
+                                        <span class="badge bg-success">
+                                            IN
+                                        </span>
+                                        {% else %}
+                                        <span class="badge bg-danger">
+                                            OUT
+                                        </span>
+                                        {% endif %}
+                                    </td>
+                                </tr>
+                                {% empty %}
+                                <tr>
+                                    <td colspan="3">
+                                        No Inventory Records
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Alerts -->
+    <div class="row g-4 mt-3">
+        <!-- Low Stock -->
+        <div class="col-lg-6">
+            <div class="card dashboard-table">
+                <div class="card-header bg-warning text-dark">
+                    <h5 class="mb-0">
+                        ⚠ Low Stock Products
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>Product</th>
+                                <th>Stock</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in low_stock_products %}
+                            <tr>
+                                <td>{{ product.name }}</td>
+                                <td>
+                                    <span class="badge bg-warning text-dark">
+                                        {{ product.stock }}
+                                    </span>
+                                </td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Low Stock
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">
+                                    🎉 No Low Stock Products
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+        <!-- AI Anomalies -->
+        <div class="col-lg-6">
+            <div class="card dashboard-table">
+                <div class="card-header bg-dark text-white">
+                    <h5 class="mb-0">
+                        🤖 AI Detected Anomalies
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <table class="table table-hover align-middle">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Sales Qty</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for anomaly in sales_anomalies %}
+                            <tr>
+                                <td>{{ anomaly.index }}</td>
+                                <td>
+                                    {{ anomaly.sale }}
+                                </td>
+                                <td>
+                                    <span class="badge bg-danger">
+                                        Anomaly
+                                    </span>
+                                </td>
+                            </tr>
+                            {% empty %}
+                            <tr>
+                                <td colspan="3">
+                                    ✅ No Anomalies Found
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

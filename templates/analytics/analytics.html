@@ -1,0 +1,322 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+    <h2 class="mb-4">
+        🤖 AI Analytics Dashboard
+    </h2>
+
+    <!-- Summary Cards -->
+
+    <div class="row g-4">
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body text-center">
+
+                    <h5 class="text-primary">
+                        Z-Score
+                    </h5>
+
+                    <h1>
+                        {{ zscore|length }}
+                    </h1>
+
+                    <p class="text-muted">
+                        Anomalies Found
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body text-center">
+
+                    <h5 class="text-success">
+                        Isolation Forest
+                    </h5>
+
+                    <h1>
+                        {{ isolation|length }}
+                    </h1>
+
+                    <p class="text-muted">
+                        Anomalies Found
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+        <div class="col-md-4">
+
+            <div class="card shadow-sm border-0">
+
+                <div class="card-body text-center">
+
+                    <h5 class="text-danger">
+                        Local Outlier Factor
+                    </h5>
+
+                    <h1>
+                        {{ lof|length }}
+                    </h1>
+
+                    <p class="text-muted">
+                        Anomalies Found
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- Z Score -->
+
+    <div class="card mt-5 shadow-sm">
+
+        <div class="card-header bg-primary text-white">
+
+            <h5 class="mb-0">
+                Z-Score Results
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Index</th>
+
+                        <th>Quantity</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in zscore %}
+
+                    <tr>
+
+                        <td>{{ item.index }}</td>
+
+                        <td>{{ item.sale }}</td>
+
+                        <td>
+
+                            <span class="badge bg-danger">
+
+                                Anomaly
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="3">
+
+                            ✅ No anomalies detected.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- Isolation Forest -->
+
+    <div class="card mt-5 shadow-sm">
+
+        <div class="card-header bg-success text-white">
+
+            <h5 class="mb-0">
+                Isolation Forest Results
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Quantity</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in isolation %}
+
+                    <tr>
+
+                        <td>{{ item.product }}</td>
+
+                        <td>{{ item.sale }}</td>
+
+                        <td>₹ {{ item.amount }}</td>
+
+                        <td>
+
+                            <span class="badge bg-danger">
+
+                                Anomaly
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="4">
+
+                            ✅ No anomalies detected.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+    <!-- LOF -->
+
+    <div class="card mt-5 shadow-sm">
+
+        <div class="card-header bg-danger text-white">
+
+            <h5 class="mb-0">
+                Local Outlier Factor Results
+            </h5>
+
+        </div>
+
+        <div class="card-body">
+
+            <table class="table table-hover">
+
+                <thead>
+
+                    <tr>
+
+                        <th>Product</th>
+
+                        <th>Quantity</th>
+
+                        <th>Amount</th>
+
+                        <th>Status</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody>
+
+                    {% for item in lof %}
+
+                    <tr>
+
+                        <td>{{ item.product }}</td>
+
+                        <td>{{ item.sale }}</td>
+
+                        <td>₹ {{ item.amount }}</td>
+
+                        <td>
+
+                            <span class="badge bg-danger">
+
+                                Anomaly
+
+                            </span>
+
+                        </td>
+
+                    </tr>
+
+                    {% empty %}
+
+                    <tr>
+
+                        <td colspan="4">
+
+                            ✅ No anomalies detected.
+
+                        </td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </tbody>
+
+            </table>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+{% endblock %}
